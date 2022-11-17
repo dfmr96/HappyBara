@@ -20,24 +20,28 @@ public class PlayerController : MonoBehaviour
             rb.angularVelocity = new Vector3(0,-4,0);
         }
 
-        if (Input.GetKey(KeyCode.D)){
+        else if (Input.GetKey(KeyCode.D)){
             rb.angularVelocity = new Vector3(0, 4, 0);
 
         }
 
-        if (Input.GetKey(KeyCode.W))
+        else if (Input.GetKey(KeyCode.W))
         {
             rb.velocity = rb.transform.forward * 6;
         }
 
-        if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S))
         {
             rb.velocity = rb.transform.forward * -6;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        else if (Input.GetKeyDown(KeyCode.Space))
         {
             rb.AddForce(rb.transform.up * 400);
+        } else
+        {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
         }
     }
 }
