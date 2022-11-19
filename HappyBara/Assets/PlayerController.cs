@@ -5,11 +5,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    Rigidbody rb;
+    [SerializeField] Rigidbody rb;
     Vector3 forward;
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
         forward = Vector3.forward;
     }
 
