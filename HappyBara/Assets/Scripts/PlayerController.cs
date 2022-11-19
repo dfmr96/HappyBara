@@ -83,5 +83,10 @@ public class PlayerController : MonoBehaviour
             Debug.Log(other.gameObject.name + "fue alimentado");
             interactTimer = interactCooldown;
         }
+
+        if (other.gameObject.CompareTag("Truck") && Input.GetKey(KeyCode.E) && interactTimer < 0)
+        {
+            other.gameObject.GetComponent<TruckScript>().LoadCarpincho();
+        }
     }
 }
