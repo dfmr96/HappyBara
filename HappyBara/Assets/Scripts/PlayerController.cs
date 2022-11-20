@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -9,8 +6,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Collider interactCollider;
     Vector3 forward;
     public int food = 100;
-    [SerializeField]float interactTimer;
+    public int angularSpeed;
+    public int speed;
+    [SerializeField] float interactTimer;
     float interactCooldown = 1f;
+    public GameObject feed_QTE_Prefab;
+    public GameObject feed_QTE;
+    public GameObject canvas;
+    bool isOnQTE = false;
 
     private void Start()
     {
@@ -24,16 +27,16 @@ public class PlayerController : MonoBehaviour
         PlayerMovement();
     }
 
-    void PlayerTurn ()
+    void PlayerTurn()
     {
         if (Input.GetKey(KeyCode.A))
         {
-            rb.angularVelocity = new Vector3(0, -4, 0);
+            rb.angularVelocity = new Vector3(0, -angularSpeed, 0);
         }
 
         else if (Input.GetKey(KeyCode.D))
         {
-            rb.angularVelocity = new Vector3(0, 4, 0);
+            rb.angularVelocity = new Vector3(0, angularSpeed, 0);
 
         }
         else
@@ -42,16 +45,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void PlayerMovement ()
+    void PlayerMovement()
     {
         if (Input.GetKey(KeyCode.W))
         {
-            rb.velocity = rb.transform.forward * 6;
+            rb.velocity = rb.transform.forward * speed;
         }
 
         else if (Input.GetKey(KeyCode.S))
         {
-            rb.velocity = rb.transform.forward * -6;
+            rb.velocity = rb.transform.forward * -speed;
         }
 
         else if (Input.GetKeyDown(KeyCode.Space))
@@ -68,7 +71,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-        food -= foodUsed;
+            food -= foodUsed;
         }
     }
 
@@ -76,12 +79,46 @@ public class PlayerController : MonoBehaviour
     {
         interactTimer -= Time.deltaTime;
 
-        if(other.gameObject.CompareTag("Animal") && Input.GetKey(KeyCode.E) && interactTimer < 0)
+        if (other.gameObject.CompareTag("Animal") && Input.GetKey(KeyCode.E) && interactTimer < 0)
         {
-            other.gameObject.GetComponent<CarpinchoStats>().IncreaseFood();
-            food -= other.gameObject.GetComponent<CarpinchoStats>().foodPerUse;
-            Debug.Log(other.gameObject.name + "fue alimentado");
-            interactTimer = interactCooldown;
+            if (!isOnQTE)
+            {
+                feed_QTE = Instantiate(feed_QTE_Prefab);
+                feed_QTE.transform.SetParent(canvas.transform);
+                feed_QTE.GetComponent<Slider_QTE>().MoveUI();
+                interactTimer = interactCooldown;
+                isOnQTE = true;
+            }
+            else
+            {
+                if (feed_QTE.GetComponent<Slider_QTE>().SuccessAction())
+                {
+                    other.gameObject.GetComponent<CarpinchoStats>().IncreaseFood();
+                    food -= other.gameObject.GetComponent<CarpinchoStats>().foodPerUse;
+                    Debug.Log(other.gameObject.name + " fue alimentado con exito");
+                    interactTimer = interactCooldown;
+                    
+                    if (other.gameObject.GetComponent<CarpinchoStats>().CatchCarpincho())
+                    {
+                        Destroy(feed_QTE);
+                    } else
+                    {
+                        feed_QTE.GetComponent<Slider_QTE>().ReInitQTE();
+                    }
+                }
+                else
+                {
+                    food -= other.gameObject.GetComponent<CarpinchoStats>().foodPerUse;
+                    Debug.Log(other.gameObject.name + " no pudo ser alimentado");
+                    Destroy(feed_QTE);
+                    isOnQTE = false;
+                }
+            }
+        }
+
+        if (other.gameObject.CompareTag("Animal") && Input.GetKey(KeyCode.E) && interactTimer < 0 && isOnQTE == true)
+        {
+
         }
 
         if (other.gameObject.CompareTag("Truck") && Input.GetKey(KeyCode.E) && interactTimer < 0)

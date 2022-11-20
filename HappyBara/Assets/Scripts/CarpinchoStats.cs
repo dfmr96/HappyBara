@@ -13,11 +13,22 @@ public class CarpinchoStats : MonoBehaviour
     {
         food += foodPerUse;
 
-        if (food >= foodNeed)
+        if (CatchCarpincho())
         {
             playerWOAnimal.SetActive(false);
             playerWithAnimal.SetActive(true);
             Destroy(gameObject);
+        }
+    }
+
+    public bool CatchCarpincho()
+    {
+        if (food >= foodNeed)
+        {
+            return true;
+        } else
+        {
+            return false;
         }
     }
 }

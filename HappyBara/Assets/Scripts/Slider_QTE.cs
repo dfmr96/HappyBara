@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using CGTespy.UI;
 public class Slider_QTE : MonoBehaviour
 {
     public Slider feedSlider;
     [SerializeField] RectTransform successZone;
-
+    [SerializeField] RectTransform rectTransform;
     public int minValue = 0;
     public int maxValue = 100;
     public float sliderSpeed = 1.0f;
@@ -19,6 +20,12 @@ public class Slider_QTE : MonoBehaviour
         FeedSliderInit();
         GetRandomNumber();
         GetSuccessZone();
+        rectTransform.ApplyAnchorPreset(TextAnchor.LowerCenter,false, true);
+    }
+
+    public void MoveUI()
+    {
+        rectTransform.position = new Vector3 (0,-155,0);
     }
 
     void FeedSliderInit()
@@ -28,22 +35,33 @@ public class Slider_QTE : MonoBehaviour
         feedSlider.maxValue = maxValue;
         feedSlider.value = minValue;
     }
-    void GetRandomNumber()
+    public void GetRandomNumber()
     {
         randomNumber = Random.Range(minValue, maxValue);
-        minSuccess = randomNumber * (1 - minError);
-        maxSuccess = randomNumber * (1 + minError);
+        minSuccess = randomNumber - minError;
+        maxSuccess = randomNumber + minError;
+    }
+    public void ReInitQTE()
+    {
+        GetRandomNumber();
+        GetSuccessZone();
     }
 
-    void GetSuccessZone()
+    public void GetSuccessZone()
     {
         successZone.anchorMin = new Vector2(minSuccess / 100, 0);
         successZone.anchorMax = new Vector2(maxSuccess / 100, 1);
     }
 
-    void SuccessAction()
+    public bool SuccessAction()
     {
-
+        if (feedSlider.value >= minSuccess && feedSlider.value <= maxSuccess)
+        {
+            return true;    
+        } else
+        {
+            return false;
+        }
     }
 
     private void Update()
