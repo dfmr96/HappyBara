@@ -20,7 +20,6 @@ public class Slider_QTE : MonoBehaviour
         FeedSliderInit();
         GetRandomNumber();
         GetSuccessZone();
-        rectTransform.ApplyAnchorPreset(TextAnchor.LowerCenter,false, true);
     }
 
     public void MoveUI()

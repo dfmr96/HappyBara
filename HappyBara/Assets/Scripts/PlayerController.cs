@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -14,10 +15,13 @@ public class PlayerController : MonoBehaviour
     public GameObject canvas;
     bool isOnQTE = false;
 
+    [SerializeField] TMP_Text foodText;
+
     private void Start()
     {
         forward = Vector3.forward;
         interactTimer = interactCooldown;
+        foodText.text = food.ToString();
     }
 
     private void Update()
@@ -71,10 +75,8 @@ public class PlayerController : MonoBehaviour
 
     public void UseFood(int foodUsed)
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            food -= foodUsed;
-        }
+        food -= foodUsed;
+        foodText.text = food.ToString();
     }
 
     private void OnTriggerStay(Collider other)
@@ -94,7 +96,7 @@ public class PlayerController : MonoBehaviour
                 if (feed_QTE.GetComponent<Slider_QTE>().SuccessAction())
                 {
                     other.gameObject.GetComponent<CarpinchoStats>().IncreaseFood();
-                    food -= other.gameObject.GetComponent<CarpinchoStats>().foodPerUse;
+                    UseFood(other.gameObject.GetComponent<CarpinchoStats>().foodPerUse);
                     Debug.Log(other.gameObject.name + " fue alimentado con exito");
                     interactTimer = interactCooldown;
 
@@ -111,9 +113,8 @@ public class PlayerController : MonoBehaviour
                 else
                 {
                     feed_QTE.GetComponent<Slider_QTE>().ReInitQTE();
-                    food -= other.gameObject.GetComponent<CarpinchoStats>().foodPerUse;
+                    UseFood(other.gameObject.GetComponent<CarpinchoStats>().foodPerUse);
                     Debug.Log(other.gameObject.name + " no pudo ser alimentado");
-
                     isOnQTE = false;
                 }
             }

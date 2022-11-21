@@ -2027,7 +2027,12 @@ MonoBehaviour:
   rb: {fileID: 8597070491943824204}
   interactCollider: {fileID: 8903484253963315024}
   food: 100
+  angularSpeed: 0
+  speed: 0
   interactTimer: 0
+  feed_QTE: {fileID: 0}
+  canvas: {fileID: 0}
+  foodText: {fileID: 0}
 --- !u!54 &8597070491943824204
 Rigidbody:
   m_ObjectHideFlags: 0

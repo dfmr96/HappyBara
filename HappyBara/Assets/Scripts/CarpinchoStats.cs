@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CarpinchoStats : MonoBehaviour
 {
@@ -9,9 +10,18 @@ public class CarpinchoStats : MonoBehaviour
     [SerializeField] int food = 0;
     [SerializeField] GameObject playerWOAnimal;
     [SerializeField] GameObject playerWithAnimal;
+    [SerializeField] Slider foodSlider;
+
+    private void Start()
+    {
+        foodSlider.maxValue = foodNeed;
+        foodSlider.value = food;
+    }
+
     public void IncreaseFood()
     {
         food += foodPerUse;
+        foodSlider.value = food;
 
         if (CatchCarpincho())
         {
