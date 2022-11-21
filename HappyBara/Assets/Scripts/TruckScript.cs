@@ -6,14 +6,21 @@ public class TruckScript : MonoBehaviour
 {
     [SerializeField] GameObject playerWOAnimal;
     [SerializeField] GameObject playerWithAnimal;
-    [SerializeField] GameObject carpincho_1;
+    [SerializeField] List<GameObject> carpinchosOnTruck = new List<GameObject>();
     public void LoadCarpincho()
     {
-        if (playerWithAnimal.activeInHierarchy == true)
+        if (playerWithAnimal.activeInHierarchy)
         {
-            playerWOAnimal.SetActive(true);
-            playerWithAnimal.SetActive(false);
-            carpincho_1.SetActive(true);
+            for(int i = 0; i < carpinchosOnTruck.Count ; i++)
+            {
+                if (!carpinchosOnTruck[i].activeInHierarchy)
+                {
+                    carpinchosOnTruck[i].SetActive(true);
+                    playerWOAnimal.SetActive(true);
+                    playerWithAnimal.SetActive(false);
+                    return;
+                }
+            }
         }
     }
 }

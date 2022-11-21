@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     public int speed;
     [SerializeField] float interactTimer;
     float interactCooldown = 1f;
-    public GameObject feed_QTE_Prefab;
     public GameObject feed_QTE;
     public GameObject canvas;
     bool isOnQTE = false;
@@ -83,11 +82,9 @@ public class PlayerController : MonoBehaviour
         {
             if (!isOnQTE)
             {
-                feed_QTE = Instantiate(feed_QTE_Prefab);
-                feed_QTE.transform.SetParent(canvas.transform);
-                feed_QTE.GetComponent<Slider_QTE>().MoveUI();
-                interactTimer = interactCooldown;
                 isOnQTE = true;
+                feed_QTE.SetActive(true);
+                interactTimer = interactCooldown;
             }
             else
             {
@@ -100,7 +97,8 @@ public class PlayerController : MonoBehaviour
                     
                     if (other.gameObject.GetComponent<CarpinchoStats>().CatchCarpincho())
                     {
-                        Destroy(feed_QTE);
+                        feed_QTE.SetActive(false);
+                        isOnQTE=false;
                     } else
                     {
                         feed_QTE.GetComponent<Slider_QTE>().ReInitQTE();
@@ -110,15 +108,9 @@ public class PlayerController : MonoBehaviour
                 {
                     food -= other.gameObject.GetComponent<CarpinchoStats>().foodPerUse;
                     Debug.Log(other.gameObject.name + " no pudo ser alimentado");
-                    Destroy(feed_QTE);
                     isOnQTE = false;
                 }
             }
-        }
-
-        if (other.gameObject.CompareTag("Animal") && Input.GetKey(KeyCode.E) && interactTimer < 0 && isOnQTE == true)
-        {
-
         }
 
         if (other.gameObject.CompareTag("Truck") && Input.GetKey(KeyCode.E) && interactTimer < 0)

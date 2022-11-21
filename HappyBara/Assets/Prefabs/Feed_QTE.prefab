@@ -335,11 +335,11 @@ MonoBehaviour:
   rectTransform: {fileID: 5819494745538024432}
   minValue: 0
   maxValue: 100
-  sliderSpeed: 30
+  sliderSpeed: 70
   randomNumber: 0
   minSuccess: 0
   maxSuccess: 0
-  minError: 10
+  minError: 8
 --- !u!1 &5819494745967364005
 GameObject:
   m_ObjectHideFlags: 0
