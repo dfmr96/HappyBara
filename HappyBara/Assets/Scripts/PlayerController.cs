@@ -22,8 +22,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        PlayerTurn();
-        PlayerMovement();
+        if (!isOnQTE)
+        {
+            PlayerTurn();
+            PlayerMovement();
+        }
     }
 
     void PlayerTurn()
@@ -94,20 +97,23 @@ public class PlayerController : MonoBehaviour
                     food -= other.gameObject.GetComponent<CarpinchoStats>().foodPerUse;
                     Debug.Log(other.gameObject.name + " fue alimentado con exito");
                     interactTimer = interactCooldown;
-                    
+
                     if (other.gameObject.GetComponent<CarpinchoStats>().CatchCarpincho())
                     {
                         feed_QTE.SetActive(false);
-                        isOnQTE=false;
-                    } else
+                        isOnQTE = false;
+                    }
+                    else
                     {
                         feed_QTE.GetComponent<Slider_QTE>().ReInitQTE();
                     }
                 }
                 else
                 {
+                    feed_QTE.GetComponent<Slider_QTE>().ReInitQTE();
                     food -= other.gameObject.GetComponent<CarpinchoStats>().foodPerUse;
                     Debug.Log(other.gameObject.name + " no pudo ser alimentado");
+
                     isOnQTE = false;
                 }
             }
