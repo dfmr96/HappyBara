@@ -31,6 +31,19 @@ public class PlayerController : MonoBehaviour
             PlayerTurn();
             PlayerMovement();
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameManager.sharedInstance.TooglePause();
+        }
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            speed = 2;
+        } else
+        {
+            speed = 6;
+        }
     }
 
     void PlayerTurn()
@@ -89,6 +102,7 @@ public class PlayerController : MonoBehaviour
             {
                 isOnQTE = true;
                 feed_QTE.SetActive(true);
+
                 interactTimer = interactCooldown;
             }
             else
@@ -102,6 +116,7 @@ public class PlayerController : MonoBehaviour
 
                     if (other.gameObject.GetComponent<CarpinchoStats>().CatchCarpincho())
                     {
+                        feed_QTE.GetComponent<Slider_QTE>().TurnOffText();
                         feed_QTE.SetActive(false);
                         isOnQTE = false;
                     }

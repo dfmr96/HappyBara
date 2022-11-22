@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using CGTespy.UI;
+using Unity.VisualScripting;
+using UnityEngine.PlayerLoop;
+
 public class Slider_QTE : MonoBehaviour
 {
     public Slider feedSlider;
@@ -15,6 +18,9 @@ public class Slider_QTE : MonoBehaviour
     public float minSuccess;
     public float maxSuccess;
     public float minError = 0.10f;
+
+    public GameObject successText;
+    public GameObject errorText;
     private void Start()
     {
         FeedSliderInit();
@@ -56,9 +62,11 @@ public class Slider_QTE : MonoBehaviour
     {
         if (feedSlider.value >= minSuccess && feedSlider.value <= maxSuccess)
         {
+            StartCoroutine(ShowText(successText));
             return true;    
         } else
         {
+            StartCoroutine(ShowText(errorText));
             return false;
         }
     }
@@ -71,5 +79,20 @@ public class Slider_QTE : MonoBehaviour
         {
             sliderSpeed = -sliderSpeed;
         }
+    }
+
+    IEnumerator ShowText(GameObject text)
+    {
+        text.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(0.5f);
+
+        text.gameObject.SetActive(false);
+    }
+
+    public void TurnOffText()
+    {
+        successText.SetActive(false);
+        errorText.SetActive(false);
     }
 }
