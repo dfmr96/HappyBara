@@ -50,6 +50,10 @@ GameObject:
   - component: {fileID: 4206454125867438804}
   - component: {fileID: 4206454125867438806}
   - component: {fileID: 4206454125867438807}
+  - component: {fileID: -8432534507418912388}
+  - component: {fileID: -6743677507911009336}
+  - component: {fileID: 8636266827695538221}
+  - component: {fileID: -7079679644387838681}
   m_Layer: 0
   m_Name: Carpincho
   m_TagString: Animal
@@ -154,6 +158,74 @@ MonoBehaviour:
   playerWOAnimal: {fileID: 0}
   playerWithAnimal: {fileID: 0}
   foodSlider: {fileID: 4466847816881070440}
+--- !u!95 &-8432534507418912388
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2405115498550375169}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 99c96c34e17999847894e2dcc42434ea, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-6743677507911009336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2405115498550375169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09d3814ae6455fc429daaebec0a4aebc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1.5
+  isWalking: 0
+  walkTime: 1.5
+  walkCounter: 0
+  waitTime: 3
+  waitCounter: 0
+  walkingZone: {fileID: 8636266827695538221}
+--- !u!65 &8636266827695538221
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2405115498550375169}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 40, y: 1.7115685, z: 40}
+  m_Center: {x: 0, y: 0.85943156, z: 0}
+--- !u!54 &-7079679644387838681
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2405115498550375169}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &3119098823780798376
 GameObject:
   m_ObjectHideFlags: 0
