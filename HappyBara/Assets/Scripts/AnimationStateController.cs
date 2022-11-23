@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Build;
 using UnityEngine;
 
 public class AnimationStateController : MonoBehaviour
@@ -25,7 +22,7 @@ public class AnimationStateController : MonoBehaviour
         bool sneakyPressed = Input.GetKey(KeyCode.LeftShift);
 
         Debug.Log(sneakyPressed);
-   
+
         if (!isWalking && forwardPressed && !isSneaky)
         {
             animator.SetBool(isWalkingHash, true);
