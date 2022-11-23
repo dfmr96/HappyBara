@@ -13647,7 +13647,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 618590086}
-  m_LocalRotation: {x: 0.058881342, y: 0.14171033, z: -0.00844442, w: 0.98811936}
+  m_LocalRotation: {x: 0.058881342, y: 0.14171028, z: -0.008444417, w: 0.98811936}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -21927,7 +21927,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.058881346, y: 0.14171034, z: -0.00844442, w: 0.98811936}
+  m_LocalRotation: {x: 0.058881346, y: 0.14171027, z: -0.008444415, w: 0.98811936}
   m_LocalPosition: {x: 75.86533, y: 4.524, z: 4.564287}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -39469,6 +39469,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Carpincho_Walking (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6587743851418536364, guid: 448bf1ecb405824449294c1c623524b4, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6587743851418536365, guid: 448bf1ecb405824449294c1c623524b4, type: 3}
       propertyPath: walkingZone
       value: 
@@ -44857,7 +44861,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6587743851418536364, guid: 448bf1ecb405824449294c1c623524b4, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6587743851418536365, guid: 448bf1ecb405824449294c1c623524b4, type: 3}
       propertyPath: walkingZone
@@ -48333,6 +48337,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Carpincho_Walking (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6587743851418536364, guid: 448bf1ecb405824449294c1c623524b4, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6587743851418536365, guid: 448bf1ecb405824449294c1c623524b4, type: 3}
       propertyPath: walkingZone
       value: 
@@ -49159,6 +49167,10 @@ PrefabInstance:
     - target: {fileID: 6317767358736219613, guid: 448bf1ecb405824449294c1c623524b4, type: 3}
       propertyPath: m_Name
       value: Carpincho_Walking
+      objectReference: {fileID: 0}
+    - target: {fileID: 6587743851418536364, guid: 448bf1ecb405824449294c1c623524b4, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6587743851418536365, guid: 448bf1ecb405824449294c1c623524b4, type: 3}
       propertyPath: m_Enabled
