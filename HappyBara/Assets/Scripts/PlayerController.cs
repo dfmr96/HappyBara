@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public GameObject feed_QTE;
     public GameObject canvas;
     bool isOnQTE = false;
+    bool isOnTutorial = true;
 
     [SerializeField] TMP_Text foodText;
 
@@ -45,9 +46,10 @@ public class PlayerController : MonoBehaviour
             speed = 6;
         }
 
-        if(Input.GetKeyDown(KeyCode.E))
+        if(Input.GetKeyDown(KeyCode.E) && isOnTutorial)
         {
             GameManager.sharedInstance.HideTutorial();
+            isOnTutorial = false;
         }
     }
 
