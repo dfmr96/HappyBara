@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         fadePanel.GetComponent<Animation>().Play();
+        Cursor.visible = false;
+
     }
     public GameObject GetCamera()
     {
@@ -39,10 +41,12 @@ public class GameManager : MonoBehaviour
         if (pauseScreen.activeInHierarchy)
         {
             pauseScreen.SetActive(false);
+            Cursor.visible = false;
             Time.timeScale = 1;
         } else
         {
             pauseScreen.SetActive(true);
+            Cursor.visible = true;
             Time.timeScale = 0;
         }
     }

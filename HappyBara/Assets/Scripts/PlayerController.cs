@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour
             {
                 isOnQTE = true;
                 feed_QTE.SetActive(true);
-
+                other.gameObject.GetComponent<CarpinchoController>().StopForFeed();
                 interactTimer = interactCooldown;
             }
             else
@@ -119,6 +119,7 @@ public class PlayerController : MonoBehaviour
                         feed_QTE.GetComponent<Slider_QTE>().TurnOffText();
                         feed_QTE.SetActive(false);
                         isOnQTE = false;
+                        interactTimer = interactCooldown;
                     }
                     else
                     {
