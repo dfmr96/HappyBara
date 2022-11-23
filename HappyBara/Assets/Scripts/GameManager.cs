@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject mainCamera;
     [SerializeField] GameObject pauseScreen;
     [SerializeField] GameObject fadePanel;
+    [SerializeField] GameObject tutorialPanel;
 
     // Start is called before the first frame update
     void Awake()
@@ -27,9 +28,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        fadePanel.GetComponent<Animation>().Play();
         Cursor.visible = false;
-
+        Time.timeScale = 0;
     }
     public GameObject GetCamera()
     {
@@ -63,5 +63,13 @@ public class GameManager : MonoBehaviour
     public void ExitGame()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void HideTutorial()
+    {
+        tutorialPanel.SetActive(false);
+        fadePanel.SetActive(true);
+        fadePanel.GetComponent<Animation>().Play();
+        Time.timeScale = 1;
     }
 }

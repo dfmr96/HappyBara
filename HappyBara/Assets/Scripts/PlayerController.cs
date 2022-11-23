@@ -44,6 +44,11 @@ public class PlayerController : MonoBehaviour
         {
             speed = 6;
         }
+
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            GameManager.sharedInstance.HideTutorial();
+        }
     }
 
     void PlayerTurn()
